@@ -1,8 +1,7 @@
-/* RHETIC v1.42857
+/* RHETIC v1.4
 *  by sirkhancision
 *  RHETI v2.5 is copyrighted to
-*  Don Richard Riso and Russ Hudson
-*  and Houghton Mifflin Company */
+*  Don Richard Riso and Russ Hudson */
 
 #include <stdio.h>
 #include "../lang/en/RHETIC_en.h" /* Header for english greetins */
@@ -36,7 +35,7 @@ int main() {
     fclose(ennea_sym);
     printf("%s", RESET_C); /* Reset color */
 
-    printf("RHETIC v1.42857\n"
+    printf("RHETIC v1.4\n"
            "This program is made by %ssirkhancision%s.\n"
            "All rights are reserved to the respective owners of this test.\n",
            B_GREEN, RESET_C);
