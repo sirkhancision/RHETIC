@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../../include/stats.h"
+#include "../../include/stats_en.h"
 
 extern short unsigned int d_type1, f_type2, c_type3,
                           e_type4, h_type5, b_type6,
