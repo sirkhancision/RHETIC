@@ -14,7 +14,7 @@ void print_instructions_en() {
     "each pair that describes you best. Even if you feel that in certain pairs,\n"
     "neither describes you very well, or that both statements are almost equally\n"
     "true, you must try to choose the statement that describes you best.\n",
-    B_RED, RESET_C);
+    RED, RESET_C);
 
     printf("\nThe most accurate approach to the test is to take it from the point of view of\n"
     "the past, as you have been most of your life.\n"
@@ -39,15 +39,15 @@ void print_instructions_en() {
     "our self as others see us. The RHETI is attempting to discern only your past\n"
     "self. Therefore, it's essential that you keep your focus on answering in your\n"
     "past self only, and not mix your past, present, ideal, or social self.\n",
-    B_RED, RESET_C);
+    RED, RESET_C);
 }
 
 void print_result_en(int a, int b, int c,
                      int d, int e, int f,
                      int g, int h, int i) {
-    short unsigned int type_res, wing_res = 0;
-    putchar('\n');
-    printf("RESULTS:\n");
+    short unsigned int type_res, wing_res;
+    type_res = wing_res = 0;
+    printf("\nRESULTS:\n");
 
     type_res = res_type(a, b, c, 
                         d, e, f, 
@@ -56,29 +56,26 @@ void print_result_en(int a, int b, int c,
     wing_res = res_wing(a, b, c, 
                         d, e, f, 
                         g, h, i);
-    putchar('\n');
 
     if (wing_res > 0)
-        printf("Your type is likely: %sEnneagram Type %huw%hu%s\n", 
-        B_RED, type_res, wing_res, RESET_C);
+        printf("\nYour type is likely: %sEnneagram Type %huw%hu%s\n", 
+        RED, type_res, wing_res, RESET_C);
 
     else if (type_res == 0 && wing_res == 0)
-        printf("Your type is likely: %sa sneaky bastard%s\n", 
-        B_RED, RESET_C);
+        printf("\nYour type is likely: %sa sneaky bastard%s\n", 
+        RED, RESET_C);
     
     else if (wing_res == 0)
-        printf("Your type is likely: %sEnneagram Type %hu%s (wing couldn't be calculated)\n", 
-        B_RED, type_res, RESET_C);
-    putchar('\n');
+        printf("\nYour type is likely: %sEnneagram Type %hu%s (wing couldn't be calculated)\n", 
+        RED, type_res, RESET_C);
 
-    printf("Score:\n"
-    "Type 1: %hu\tType 2: %hu\tType 3: %hu\n"
-    "Type 4: %hu\tType 5: %hu\tType 6: %hu\n"
-    "Type 7: %hu\tType 8: %hu\tType 9: %hu\n",
-    d, f, c, 
-    e, h, b,
-    i, g, a);
-    putchar('\n');
+    printf("\nScore:\n"
+           "Type 1: %hu\tType 2: %hu\tType 3: %hu\n"
+           "Type 4: %hu\tType 5: %hu\tType 6: %hu\n"
+           "Type 7: %hu\tType 8: %hu\tType 9: %hu\n",
+           d, f, c, 
+           e, h, b,
+           i, g, a);
 
-    printf("Thanks for trying out RHETIC! :)\n");
+    printf("\nThanks for trying out RHETIC! :)\n");
 }

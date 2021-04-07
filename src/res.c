@@ -1,7 +1,7 @@
 #include "../include/res.h"
 #include "../include/quick.h"
 
-extern unsigned int type;
+extern short unsigned int type;
 
 short unsigned int res_type(int a, int b, int c, 
                             int d, int e, int f, 
@@ -16,12 +16,10 @@ short unsigned int res_type(int a, int b, int c,
     types[6] = g; types[7] = h; types[8] = i;
 
     /* Sort biggest value */
-
     n = sizeof(types)/sizeof(types[0]);
     quicksort(types, 0, n-1);
 
     /* Highest score method */
-
     if (types[8] == 0) type = 0;
     else if (types[8] == a) type = 9;
     else if (types[8] == b) type = 6;
@@ -34,7 +32,6 @@ short unsigned int res_type(int a, int b, int c,
     else if (types[8] == i) type = 7;
 
     /* Defining triads */
-
     /* Centers of Intelligence */
     feel = (c + e + f); /* 3 + 4 + 2 */
     think = (b + h + i); /* 6 + 5 + 7 */
@@ -51,9 +48,9 @@ short unsigned int res_type(int a, int b, int c,
     competency = (d + c + h); /* 1 + 3 + 5 */
 
     /* Triads method: Type 1 */
-    if (instinct > think && instinct > feel) {
-        if (dutiful > assertive && dutiful > withdrawn) {
-            if (competency > reactive && competency > positive) {
+    if ((instinct > think) && (instinct > feel)) {
+        if ((dutiful > assertive) && (dutiful > withdrawn)) {
+            if ((competency > reactive) && (competency > positive)) {
                 type = 1;
                 return type;
             }
@@ -61,9 +58,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 2 */
-    if (feel > think && feel > instinct) {
-        if (dutiful > assertive && dutiful > withdrawn) {
-            if (positive > reactive && positive > competency) {
+    if ((feel > think) && (feel > instinct)) {
+        if ((dutiful > assertive) && (dutiful > withdrawn)) {
+            if ((positive > reactive) && (positive > competency)) {
                 type = 2;
                 return type;
             }
@@ -71,9 +68,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 3 */
-    if (feel > think && feel > instinct) {
-        if (assertive > dutiful && assertive > withdrawn) {
-            if (competency > reactive && competency > positive) {
+    if ((feel > think) && (feel > instinct)) {
+        if ((assertive > dutiful) && (assertive > withdrawn)) {
+            if ((competency > reactive) && (competency > positive)) {
                 type = 3;
                 return type;
             }
@@ -81,9 +78,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 4 */
-    if (feel > think && feel > instinct) {
-        if (withdrawn > dutiful && withdrawn > assertive) {
-            if (reactive > competency && reactive > positive) {
+    if ((feel > think) && (feel > instinct)) {
+        if ((withdrawn > dutiful) && (withdrawn > assertive)) {
+            if ((reactive > competency) && (reactive > positive)) {
                 type = 4;
                 return type;
             }
@@ -91,9 +88,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 5 */
-    if (think > feel && think > instinct) {
-        if (withdrawn > assertive && withdrawn > dutiful) {
-            if (competency > reactive && competency > positive) {
+    if ((think > feel) && (think > instinct)) {
+        if ((withdrawn > assertive) && (withdrawn > dutiful)) {
+            if ((competency > reactive) && (competency > positive)) {
                 type = 5;
                 return type;
             }
@@ -101,9 +98,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 6 */
-    if (think > feel && think > instinct) {
-        if (dutiful > assertive && dutiful > withdrawn) {
-            if (reactive > competency && reactive > positive) {
+    if ((think > feel) && (think > instinct)) {
+        if ((dutiful > assertive) && (dutiful > withdrawn)) {
+            if ((reactive > competency) && (reactive > positive)) {
                 type = 6;
                 return type;
             }
@@ -111,9 +108,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 7 */
-    if (think > feel && think > instinct) {
-        if (assertive > dutiful && assertive > withdrawn) {
-            if (positive > competency && positive > reactive) {
+    if ((think > feel) && (think > instinct)) {
+        if ((assertive > dutiful) && (assertive > withdrawn)) {
+            if ((positive > competency) && (positive > reactive)) {
                 type = 7;
                 return type;
             }
@@ -121,9 +118,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 8 */
-    if (instinct > think && instinct > feel) {
-        if (assertive > dutiful && assertive > withdrawn) {
-            if (reactive > competency && reactive > positive) {
+    if ((instinct > think) && (instinct > feel)) {
+        if ((assertive > dutiful) && (assertive > withdrawn)) {
+            if ((reactive > competency) && (reactive > positive)) {
                 type = 8;
                 return type;
             }
@@ -131,9 +128,9 @@ short unsigned int res_type(int a, int b, int c,
     }
 
     /* Triads method: Type 9 */
-    if (instinct > think && instinct > feel) {
-        if (withdrawn > dutiful && withdrawn > assertive) {
-            if (positive > reactive && positive > competency) {
+    if ((instinct > think) && (instinct > feel)) {
+        if ((withdrawn > dutiful) && (withdrawn > assertive)) {
+            if ((positive > reactive) && (positive > competency)) {
                 type = 9;
                 return type;
             }

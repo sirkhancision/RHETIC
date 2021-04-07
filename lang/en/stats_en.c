@@ -669,9 +669,9 @@ void stats_eng() {
                'G', 'D', &g_type8, &d_type1);
 
     /* Statement Pair 116 */
-    stats_form("116.Being of service and attending to the needs of others has been a high\""
+    stats_form("116.Being of service and attending to the needs of others has been a high\n"
                "priority for me. [F]", 
-               "Finding alternative ways of seeing and doing things has been a high priority"
+               "Finding alternative ways of seeing and doing things has been a high priority\n"
                "for me. [H]",
                'F', 'H', &f_type2, &h_type5);
 
@@ -745,7 +745,7 @@ void stats_eng() {
     /* Statement Pair 129 */
     stats_form("129.When I've needed to confront someone, I've often been too harsh and\n"
                "direct. [G]", 
-               "When I've needed to confront someone, I've often \"beaten around the bush\""
+               "When I've needed to confront someone, I've often \"beaten around the bush\"\n"
                "too much. [C]",
                'G', 'C', &g_type8, &c_type3);
 

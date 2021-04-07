@@ -1,7 +1,6 @@
 #include "../include/quick.h"
 
 /* Code modified from GeeksForGeeks */
-
 /* A utility function to swap two elements */
 void swap(short unsigned int *a, short unsigned int *b) {
     short unsigned int t = *a; 

@@ -15,7 +15,7 @@ void print_instructions_pt() {
     "cada par que lhe descreve melhor. Até se você sentir que em certos pares,\n"
     "nenhum te descreve muito bem, ou que ambas as frases são quase igualmente\n"
     "verdadeiras, você deve tentar escolher a frase que lhe descreve melhor.\n",
-    B_RED, RESET_C);
+    RED, RESET_C);
 
     printf("\nA abordagem mais precisa para o teste é tomá-lo pelo ponto de vista do\n"
     "passado, como você tem sido pela maior parte de sua vida.\n"
@@ -42,15 +42,15 @@ void print_instructions_pt() {
     "eu do passado. Portanto, é essencial que você mantenha o foco em responder\n"
     "apenas no seu eu do pasasdo, e não misturar o seu eu do passado, presente,\n"
     "ideal, ou social.\n",
-    B_RED, RESET_C);
+    RED, RESET_C);
 }
 
 void print_result_pt(int a, int b, int c,
                      int d, int e, int f,
                      int g, int h, int i) {
-    short unsigned int type_res, wing_res = 0;
-    putchar('\n');
-    printf("RESULTADOS:\n");
+    short unsigned int type_res, wing_res;
+    type_res = wing_res = 0;
+    printf("\nRESULTADOS:\n");
 
     type_res = res_type(a, b, c, 
                         d, e, f, 
@@ -59,29 +59,26 @@ void print_result_pt(int a, int b, int c,
     wing_res = res_wing(a, b, c, 
                         d, e, f, 
                         g, h, i);
-    putchar('\n');
 
     if (wing_res > 0)
-        printf("Seu tipo é provavelmente: %sTipo %huw%hu do Eneagrama%s\n", 
-        B_RED, type_res, wing_res, RESET_C);
+        printf("\nSeu tipo é provavelmente: %sTipo %huw%hu do Eneagrama%s\n", 
+        RED, type_res, wing_res, RESET_C);
 
     else if (type_res == 0 && wing_res == 0)
-        printf("Seu tipo é provavelmente: %sum malandro sorrateiro%s\n", 
-        B_RED, RESET_C);
+        printf("\nSeu tipo é provavelmente: %sum malandro sorrateiro%s\n", 
+        RED, RESET_C);
     
     else if (wing_res == 0)
-        printf("Seu tipo é provavelmente: %sTipo %hu do Eneagrama%s (asa não pôde ser calculada)\n", 
-        B_RED, type_res, RESET_C);
-    putchar('\n');
+        printf("\nSeu tipo é provavelmente: %sTipo %hu do Eneagrama%s (asa não pôde ser calculada)\n", 
+        RED, type_res, RESET_C);
 
-    printf("Pontuação:\n"
-    "Tipo 1: %hu\tTipo 2: %hu\tTipo 3: %hu\n"
-    "Tipo 4: %hu\tTipo 5: %hu\tTipo 6: %hu\n"
-    "Tipo 7: %hu\tTipo 8: %hu\tTipo 9: %hu\n",
-    d, f, c, 
-    e, h, b,
-    i, g, a);
-    putchar('\n');
+    printf("\nPontuação:\n"
+           "Tipo 1: %hu\tTipo 2: %hu\tTipo 3: %hu\n"
+           "Tipo 4: %hu\tTipo 5: %hu\tTipo 6: %hu\n"
+           "Tipo 7: %hu\tTipo 8: %hu\tTipo 9: %hu\n",
+           d, f, c, 
+           e, h, b,
+           i, g, a);
 
-    printf("Obrigado por testar o RHETIC! :)\n");
+    printf("\nObrigado por testar o RHETIC! :)\n");
 }
