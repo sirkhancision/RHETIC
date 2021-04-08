@@ -5,6 +5,7 @@ extern short unsigned int d_type1, f_type2, c_type3,
                           e_type4, h_type5, b_type6,
                           i_type7, g_type8, a_type9;
 
+/* Function that contains the basic structure/form of each question in the test */
 void stats_form(char stat1[120], char stat2[120], char resp1,
                 char resp2, short unsigned int *stat1_type, short unsigned int *stat2_type) {
     char resp;
@@ -33,6 +34,7 @@ void stats_form(char stat1[120], char stat2[120], char resp1,
     }
 }
 
+/* Function to print each pair of statements in English */
 void stats_eng() {
     /* Statement Pair 1 */
     stats_form("1. I've been romantic and imaginative. [E]", 

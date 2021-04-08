@@ -16,7 +16,8 @@ short unsigned int d_type1, f_type2, c_type3,
                    i_type7, g_type8, a_type9;
 
 int main() {
-    char filec, lang, ins_or_test;
+    int filec; /* Declared as int due to use of EOF */
+    char lang, ins_or_test;
     FILE *ennea_sym;
 
     /* Print greeting */
@@ -31,7 +32,7 @@ int main() {
     fclose(ennea_sym);
     printf("%s", RESET_C); /* Reset color */
 
-    printf("RHETIC v1.42\n"
+    printf("RHETIC v1.42-2\n"
            "This program was made by %ssirkhancision%s.\n"
            "All rights are reserved to the respective owners of this test.\n",
            GREEN, RESET_C);
@@ -55,10 +56,9 @@ int main() {
             putchar('\n');
 
             /* Go to test */
-            while(1) {
+            while(ins_or_test != '2') {
                 printf("Enter [2] to proceed to the test.\n");
                 while ((ins_or_test = getchar()) && (getchar() != '\n'));
-                if (ins_or_test == '2') break;
             }
         }
 
@@ -73,7 +73,7 @@ int main() {
         }
     }
 
-    /* Linguagem: Português */
+    /* Linguagem: Português(BR) */
     else if (lang == '2') {
         print_greet_pt();
 
@@ -85,10 +85,9 @@ int main() {
             putchar('\n');
 
             /* Ir ao teste */
-            while(1) {
+            while(ins_or_test != '2') {
                 printf("Entre com [2] para prosseguir com o teste.\n");
                 while ((ins_or_test = getchar()) && (getchar() != '\n'));
-                if (ins_or_test == '2') break;
             }
         }
 
@@ -103,7 +102,7 @@ int main() {
         }
     }
 
-    /* Langue: Français */
+    /* Langue: Français(CA) */
     else if (lang == '3')
         printf("Soon\n");
 

@@ -6,6 +6,7 @@ extern short unsigned int d_type1, f_type2, c_type3,
                           e_type4, h_type5, b_type6,
                           i_type7, g_type8, a_type9;
 
+/* Função para imprimir cada par de afirmações do teste em Português(BR) */
 void stats_pt() {
     /* Par de Frases 1 */
     stats_form("1. Eu tenho sido romântico e imaginativo. [E]", 
