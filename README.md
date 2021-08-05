@@ -6,9 +6,9 @@ This is a relatively simple program in C to serve as an implementation of the **
 
 Just `make` inside the directory and it'll output the executable file.
 
--   [x] Include English language version
--   [x] Include Portuguese(BR) language version
--   [ ] Include French(CA) language version
+-	[x] Include English language version
+-	[x] Include Portuguese(BR) language version
+-	[ ] Include French(CA) language version
 
 ### Português:
 
