@@ -47,7 +47,7 @@ void print_instructions_en(void) {
 
 /* Prints the test's results in English */
 void print_result_en(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	short unsigned int type_res, wing_res;
+	int type_res, wing_res;
 	type_res = wing_res = 0;
 	printf("\nRESULTS:\n");
 
@@ -59,8 +59,7 @@ void print_result_en(int a, int b, int c, int d, int e, int f, int g, int h, int
 	else if (type_res == 0 && wing_res == 0)
 		printf("\nYour type is likely: %sa sneaky bastard%s\n", RED, RESET_C);
 	else if (wing_res == 0) 
-		printf("\nYour type is likely: %sEnneagram Type %hu%s (wing couldn't be "
-		"calculated)\n",
+		printf("\nYour type is likely: %sEnneagram Type %hu%s (wing couldn't be calculated)\n",
 		RED, type_res, RESET_C);
 
 	printf("\nScore:\n"

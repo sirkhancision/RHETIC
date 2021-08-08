@@ -48,7 +48,7 @@ void print_instructions_pt(void) {
 
 /* Função para imprimir os resultados do teste em Português(BR) */
 void print_result_pt(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	short unsigned int type_res, wing_res;
+	int type_res, wing_res;
 	type_res = wing_res = 0;
 	printf("\nRESULTADOS:\n");
 
@@ -65,7 +65,8 @@ void print_result_pt(int a, int b, int c, int d, int e, int f, int g, int h, int
 	printf("\nPontuação:\n"
 	"Tipo 1: %hu\tTipo 2: %hu\tTipo 3: %hu\n"
 	"Tipo 4: %hu\tTipo 5: %hu\tTipo 6: %hu\n"
-	"Tipo 7: %hu\tTipo 8: %hu\tTipo 9: %hu\n", d, f, c, e, h, b, i, g, a);
+	"Tipo 7: %hu\tTipo 8: %hu\tTipo 9: %hu\n", 
+	d, f, c, e, h, b, i, g, a);
 
 	printf("\nObrigado por testar o RHETIC! :)\n");
 }

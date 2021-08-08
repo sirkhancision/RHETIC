@@ -11,8 +11,8 @@
 #include "../lang/pt/RHETIC_pt.h" /* Header for portuguese general text */
 #include <stdio.h>
 
-short unsigned int type;
-short unsigned int d_type1, f_type2, c_type3, e_type4, h_type5, b_type6, i_type7, g_type8, a_type9;
+int type;
+int d_type1, f_type2, c_type3, e_type4, h_type5, b_type6, i_type7, g_type8, a_type9;
 
 int main(void) {
 	int filec; /* Declared as int due to use of EOF */
@@ -67,8 +67,7 @@ int main(void) {
 			stats_eng(); /* Print statements */
 
 			/* Results */
-			print_result_en(a_type9, b_type6, c_type3, d_type1, e_type4, f_type2,
-					g_type8, h_type5, i_type7);
+			print_result_en(a_type9, b_type6, c_type3, d_type1, e_type4, f_type2, g_type8, h_type5, i_type7);
 		}
 	}
 
@@ -95,8 +94,7 @@ int main(void) {
 			stats_pt(); /* Imprimir frases */
 
 			/* Resultados */
-			print_result_pt(a_type9, b_type6, c_type3, d_type1, e_type4, f_type2,
-					g_type8, h_type5, i_type7);
+			print_result_pt(a_type9, b_type6, c_type3, d_type1, e_type4, f_type2, g_type8, h_type5, i_type7);
 		}
 	}
 

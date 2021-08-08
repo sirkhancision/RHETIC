@@ -1,12 +1,12 @@
 #include "../include/quick.h"
 #include "../include/res.h"
 
-extern short unsigned int type;
+extern int type;
 
 /* Function using different algorithms to calculate the Enneagram Type, based on
  * the test's answers */
-short unsigned int res_type(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	short unsigned int feel, think, instinct, assertive, dutiful, withdrawn, positive, reactive, competency, n, types[9];
+int res_type(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
+	int feel, think, instinct, assertive, dutiful, withdrawn, positive, reactive, competency, n, types[9];
 
 	types[0] = a;
 	types[1] = b;
@@ -156,8 +156,8 @@ short unsigned int res_type(int a, int b, int c, int d, int e, int f, int g, int
 
 /* Function to calculate the Enneagram Type wing based on the main result and
  * other scores on the test */
-short unsigned int res_wing(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	short unsigned int wing;
+int res_wing(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
+	int wing;
 
 	switch (type) {
 		case 1:

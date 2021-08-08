@@ -2,8 +2,8 @@
 
 /* Code modified from GeeksForGeeks */
 /* A utility function to swap two elements */
-void swap(short unsigned int *a, short unsigned int *b) {
-	short unsigned int t = *a;
+void swap(int *a, int *b) {
+	int t = *a;
 	*a = *b;
 	*b = t;
 }
@@ -13,10 +13,10 @@ void swap(short unsigned int *a, short unsigned int *b) {
     array, and places all smaller (smaller than pivot)
    to left of pivot and all greater elements to right
    of pivot */
-short unsigned int partition(short unsigned int arr[], short unsigned int low, short unsigned int high) {
-	short unsigned int pivot = arr[high]; /* pivot */
-	short unsigned int i = (low - 1);     /* Index of smaller element */
-	short unsigned int j;
+int partition(int arr[], int low, int high) {
+	int pivot = arr[high]; /* pivot */
+	int i = (low - 1);     /* Index of smaller element */
+	int j;
 
 	for (j = low; j <= high - 1; j++) {
 		/* If current element is smaller than the pivot */
@@ -33,11 +33,11 @@ short unsigned int partition(short unsigned int arr[], short unsigned int low, s
  arr[] --> Array to be sorted,
   low  --> Starting index,
   high  --> Ending index */
-void quicksort(short unsigned int arr[], short unsigned int low, short unsigned int high) {
+void quicksort(int arr[], int low, int high) {
 	if (low < high) {
 		/* pi is partitioning index, arr[p] is now
 		at right place */
-		short unsigned int pi = partition(arr, low, high);
+		int pi = partition(arr, low, high);
 
 		/* Separately sort elements before */
 		/* partition and after partition */
