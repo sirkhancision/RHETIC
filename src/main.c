@@ -7,12 +7,14 @@
 #include "../include/colors.h" /* Header for color macros */
 #include "../include/stats_en.h" /* Header for the statements of the test in english */
 #include "../include/stats_pt.h" /* Header for the statements of the test in portuguese */
+#include "../include/type.h" /* Header for the enneagram types */
 #include "../lang/en/RHETIC_en.h" /* Header for english general text */
 #include "../lang/pt/RHETIC_pt.h" /* Header for portuguese general text */
 #include <stdio.h>
 
-int type;
-int d_type1, f_type2, c_type3, e_type4, h_type5, b_type6, i_type7, g_type8, a_type9;
+TYPE types_global = {
+	.a_9 = 0, .b_6 = 0, .c_3 = 0, .d_1 = 0, .e_4 = 0, .f_2 = 0, .g_8 = 0, .h_5 = 0, .i_7 = 0
+};
 
 int main(void) {
 	int filec; /* Declared as int due to use of EOF */
@@ -21,7 +23,7 @@ int main(void) {
 
 	/* Print greeting */
 	/* Checks if ennea_sym file exists beforehand */
-	if (!(ennea_sym = fopen("include/ennea_sym", "r"))) {
+	if (!(ennea_sym = fopen("include/ennea_sym.txt", "r"))) {
 		printf("\"ennea_sym\" file missing\n");
 		return 1;
 	}
@@ -67,7 +69,7 @@ int main(void) {
 			stats_eng(); /* Print statements */
 
 			/* Results */
-			print_result_en(a_type9, b_type6, c_type3, d_type1, e_type4, f_type2, g_type8, h_type5, i_type7);
+			print_result_en(types_global);
 		}
 	}
 
@@ -94,7 +96,7 @@ int main(void) {
 			stats_pt(); /* Imprimir frases */
 
 			/* Resultados */
-			print_result_pt(a_type9, b_type6, c_type3, d_type1, e_type4, f_type2, g_type8, h_type5, i_type7);
+			print_result_pt(types_global);
 		}
 	}
 

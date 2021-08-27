@@ -1,7 +1,10 @@
 #include "../../include/colors.h"
 #include "../../include/res.h"
+#include "../../include/type.h"
 #include "RHETIC_en.h"
 #include <stdio.h>
+
+extern TYPE types_global;
 
 /* Prints the initial greeting text in English */
 void print_greet_en(void) {
@@ -46,27 +49,29 @@ void print_instructions_en(void) {
 }
 
 /* Prints the test's results in English */
-void print_result_en(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	int type_res, wing_res;
-	type_res = wing_res = 0;
+void print_result_en(TYPE types) {
+	struct RESULT {
+		int type, wing;
+	} RESULT;
+
 	printf("\nRESULTS:\n");
 
-	type_res = res_type(a, b, c, d, e, f, g, h, i);
-	wing_res = res_wing(a, b, c, d, e, f, g, h, i);
+	RESULT.type = res_type(types);
+	RESULT.wing = res_wing(types);
 
-	if (wing_res > 0)
-		printf("\nYour type is likely: %sEnneagram Type %huw%hu%s\n", RED, type_res, wing_res, RESET_C);
-	else if (type_res == 0 && wing_res == 0)
+	if (RESULT.wing > 0)
+		printf("\nYour type is likely: %sEnneagram Type %huw%hu%s\n", RED, RESULT.type, RESULT.wing, RESET_C);
+	else if (RESULT.type == 0 && RESULT.wing == 0)
 		printf("\nYour type is likely: %sa sneaky bastard%s\n", RED, RESET_C);
-	else if (wing_res == 0) 
+	else if (RESULT.wing == 0) 
 		printf("\nYour type is likely: %sEnneagram Type %hu%s (wing couldn't be calculated)\n",
-		RED, type_res, RESET_C);
+		RED, RESULT.type, RESET_C);
 
 	printf("\nScore:\n"
 	"Type 1: %hu\tType 2: %hu\tType 3: %hu\n"
 	"Type 4: %hu\tType 5: %hu\tType 6: %hu\n"
 	"Type 7: %hu\tType 8: %hu\tType 9: %hu\n",
-	d, f, c, e, h, b, i, g, a);
+	types.d_1, types.f_2, types.c_3, types.e_4, types.h_5, types.b_6, types.i_7, types.g_8, types.a_9);
 
 	printf("\nThanks for trying out RHETIC! :)\n");
 }

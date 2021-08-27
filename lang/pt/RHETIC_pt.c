@@ -1,7 +1,10 @@
 #include "../../include/colors.h"
 #include "../../include/res.h"
+#include "../../include/type.h"
 #include "RHETIC_pt.h"
 #include <stdio.h>
+
+extern TYPE types_global;
 
 /* Função para imprimir o texto introdutório em Português(BR) */
 void print_greet_pt(void) {
@@ -47,26 +50,28 @@ void print_instructions_pt(void) {
 }
 
 /* Função para imprimir os resultados do teste em Português(BR) */
-void print_result_pt(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	int type_res, wing_res;
-	type_res = wing_res = 0;
+void print_result_pt(TYPE types) {
+	struct RESULT {
+		int type, wing;
+	} RESULT;
+
 	printf("\nRESULTADOS:\n");
 
-	type_res = res_type(a, b, c, d, e, f, g, h, i);
-	wing_res = res_wing(a, b, c, d, e, f, g, h, i);
+	RESULT.type = res_type(types);
+	RESULT.wing = res_wing(types);
 
-	if (wing_res > 0)
-		printf("\nSeu tipo é provavelmente: %sTipo %huw%hu do Eneagrama%s\n", RED, type_res, wing_res, RESET_C);
-	else if (type_res == 0 && wing_res == 0)
+	if (RESULT.wing > 0)
+		printf("\nSeu tipo é provavelmente: %sTipo %huw%hu do Eneagrama%s\n", RED, RESULT.type, RESULT.wing, RESET_C);
+	else if (RESULT.type == 0 && RESULT.wing == 0)
 		printf("\nSeu tipo é provavelmente: %sum malandro sorrateiro%s\n", RED, RESET_C);
-	else if (wing_res == 0)
-		printf("\nSeu tipo é provavelmente: %sTipo %hu do Eneagrama%s (asa não pôde ser calculada)\n", RED, type_res, RESET_C);
+	else if (RESULT.wing == 0)
+		printf("\nSeu tipo é provavelmente: %sTipo %hu do Eneagrama%s (asa não pôde ser calculada)\n", RED, RESULT.type, RESET_C);
 
 	printf("\nPontuação:\n"
 	"Tipo 1: %hu\tTipo 2: %hu\tTipo 3: %hu\n"
 	"Tipo 4: %hu\tTipo 5: %hu\tTipo 6: %hu\n"
 	"Tipo 7: %hu\tTipo 8: %hu\tTipo 9: %hu\n", 
-	d, f, c, e, h, b, i, g, a);
+	types.d_1, types.f_2, types.c_3, types.e_4, types.h_5, types.b_6, types.i_7, types.g_8, types.a_9);
 
 	printf("\nObrigado por testar o RHETIC! :)\n");
 }

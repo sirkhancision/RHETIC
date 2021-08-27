@@ -1,15 +1,15 @@
 CC = gcc
-CFLAGS = -ansi -march=native -O2 -pedantic -pipe -Wall
+CFLAGS = -march=native -O2 -pedantic -pipe -Wall
 
 INCLUDES = -I/include
 
 SRCS = src/main.c\
-	src/res.c\
 	src/quick.c\
-	lang/en/stats_en.c\
-	lang/pt/stats_pt.c\
+	src/res.c\
 	lang/en/RHETIC_en.c\
-	lang/pt/RHETIC_pt.c
+	lang/en/stats_en.c\
+	lang/pt/RHETIC_pt.c\
+	lang/pt/stats_pt.c
 
 OBJS = $(SRCS:.c=.o)
 

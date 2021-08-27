@@ -1,231 +1,211 @@
-#include "../include/quick.h"
 #include "../include/res.h"
-
-extern int type;
+#include "../include/type.h"
+#include "../include/quick.h"
 
 /* Function using different algorithms to calculate the Enneagram Type, based on
  * the test's answers */
-int res_type(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	int feel, think, instinct, assertive, dutiful, withdrawn, positive, reactive, competency, n, types[9];
+int res_type(TYPE types) {
+	GROUPS GROUPS = {
+		.INTELLIGENCE.feeling = types.f_2 + types.c_3 + types.e_4,
+		.INTELLIGENCE.thinking = types.h_5 + types.b_6 + types.i_7,
+		.INTELLIGENCE.instinct = types.a_9 + types.g_8 + types.d_1,
+		.HORNEVIAN.assertive = types.c_3 + types.i_7 + types.g_8,
+		.HORNEVIAN.dutiful = types.d_1 + types.f_2 + types.b_6,
+		.HORNEVIAN.withdrawn = types.e_4 + types.h_5 + types.a_9,
+		.HARMONIC.positive = types.f_2 + types.i_7 + types.a_9,
+		.HARMONIC.reactive = types.e_4 + types.b_6 + types.g_8,
+		.HARMONIC.competency = types.d_1 + types.c_3 + types.h_5
+	};
 
-	types[0] = a;
-	types[1] = b;
-	types[2] = c;
-	types[3] = d;
-	types[4] = e;
-	types[5] = f;
-	types[6] = g;
-	types[7] = h;
-	types[8] = i;
+	int types_array[9];
+	types_array[0] = types.a_9;
+	types_array[1] = types.b_6;
+	types_array[2] = types.c_3;
+	types_array[3] = types.d_1;
+	types_array[4] = types.e_4;
+	types_array[5] = types.f_2;
+	types_array[6] = types.g_8;
+	types_array[7] = types.h_5;
+	types_array[8] = types.i_7;
 
 	/* Sort biggest value */
-	n = sizeof(types) / sizeof(types[0]);
-	quicksort(types, 0, n - 1);
-
+	quicksort(types_array, 0, (sizeof(types_array) / sizeof(types_array[0])) - 1);
 	/* Highest score method */
 	/* Maybe make this implementation better */
-	if (types[8] == 0)
-		type = 0;
-	else if (types[8] == a)
-		type = 9;
-	else if (types[8] == b)
-		type = 6;
-	else if (types[8] == c)
-		type = 3;
-	else if (types[8] == d)
-		type = 1;
-	else if (types[8] == e)
-		type = 4;
-	else if (types[8] == f)
-		type = 2;
-	else if (types[8] == g)
-		type = 8;
-	else if (types[8] == h)
-		type = 5;
-	else if (types[8] == i)
-		type = 7;
-
-	/* Defining triads */
-	/* Centers of Intelligence */
-	feel = (c + e + f);     /* 3 + 4 + 2 */
-	think = (b + h + i);    /* 6 + 5 + 7 */
-	instinct = (a + d + g); /* 9 + 1 + 8 */
-
-	/* Hornevian Groups */
-	assertive = (c + i + g); /* 3 + 7 + 8 */
-	dutiful = (d + f + b);   /* 1 + 2 + 6 */
-	withdrawn = (e + h + a); /* 4 + 5 + 9 */
-
-	/* Harmonic Groups */
-	positive = (a + i + f);   /* 9 + 7 + 2 */
-	reactive = (g + b + e);   /* 8 + 6 + 4 */
-	competency = (d + c + h); /* 1 + 3 + 5 */
+	if (types_array[8] == 0)
+		types.result = 0;
+	else if (types_array[8] == types.a_9)
+		types.result = 9;
+	else if (types_array[8] == types.b_6)
+		types.result = 6;
+	else if (types_array[8] == types.c_3)
+		types.result = 3;
+	else if (types_array[8] == types.d_1)
+		types.result = 1;
+	else if (types_array[8] == types.e_4)
+		types.result = 4;
+	else if (types_array[8] == types.f_2)
+		types.result = 2;
+	else if (types_array[8] == types.g_8)
+		types.result = 8;
+	else if (types_array[8] == types.h_5)
+		types.result = 5;
+	else if (types_array[8] == types.i_7)
+		types.result = 7;
 
 	/* Triads method: Type 1 */
-	if ((instinct > think) && (instinct > feel)) {
-		if ((dutiful > assertive) && (dutiful > withdrawn)) {
-			if ((competency > reactive) && (competency > positive)) {
-				type = 1;
-				return type;
+	if ((GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.thinking) &&
+	(GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.feeling))
+		if ((GROUPS.HORNEVIAN.dutiful > GROUPS.HORNEVIAN.assertive) &&
+		(GROUPS.HORNEVIAN.dutiful > GROUPS.HORNEVIAN.withdrawn))
+			if ((GROUPS.HARMONIC.competency > GROUPS.HARMONIC.reactive) &&
+			(GROUPS.HARMONIC.competency > GROUPS.HARMONIC.positive)) {
+				types.result = 1;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 2 */
-	if ((feel > think) && (feel > instinct)) {
-		if ((dutiful > assertive) && (dutiful > withdrawn)) {
-			if ((positive > reactive) && (positive > competency)) {
-				type = 2;
-				return type;
+	if ((GROUPS.INTELLIGENCE.feeling > GROUPS.INTELLIGENCE.thinking) &&
+	(GROUPS.INTELLIGENCE.feeling > GROUPS.INTELLIGENCE.instinct))
+		if ((GROUPS.HORNEVIAN.dutiful > GROUPS.HORNEVIAN.assertive) &&
+		(GROUPS.HORNEVIAN.dutiful > GROUPS.HORNEVIAN.withdrawn))
+			if ((GROUPS.HARMONIC.positive > GROUPS.HARMONIC.reactive) &&
+			(GROUPS.HARMONIC.positive > GROUPS.HARMONIC.competency)) {
+				types.result = 2;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 3 */
-	if ((feel > think) && (feel > instinct)) {
-		if ((assertive > dutiful) && (assertive > withdrawn)) {
-			if ((competency > reactive) && (competency > positive)) {
-				type = 3;
-				return type;
+	if ((GROUPS.INTELLIGENCE.feeling > GROUPS.INTELLIGENCE.thinking) &&
+	(GROUPS.INTELLIGENCE.feeling > GROUPS.INTELLIGENCE.instinct))
+		if ((GROUPS.HORNEVIAN.assertive > GROUPS.HORNEVIAN.dutiful) &&
+		(GROUPS.HORNEVIAN.assertive > GROUPS.HORNEVIAN.withdrawn))
+			if ((GROUPS.HARMONIC.competency > GROUPS.HARMONIC.reactive) &&
+			(GROUPS.HARMONIC.competency > GROUPS.HARMONIC.positive)) {
+				types.result = 3;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 4 */
-	if ((feel > think) && (feel > instinct)) {
-		if ((withdrawn > dutiful) && (withdrawn > assertive)) {
-			if ((reactive > competency) && (reactive > positive)) {
-				type = 4;
-				return type;
+	if ((GROUPS.INTELLIGENCE.feeling > GROUPS.INTELLIGENCE.thinking) &&
+	(GROUPS.INTELLIGENCE.feeling > GROUPS.INTELLIGENCE.instinct))
+		if ((GROUPS.HORNEVIAN.withdrawn > GROUPS.HORNEVIAN.dutiful) &&
+		(GROUPS.HORNEVIAN.withdrawn > GROUPS.HORNEVIAN.assertive))
+			if ((GROUPS.HARMONIC.reactive > GROUPS.HARMONIC.competency) &&
+			(GROUPS.HARMONIC.reactive > GROUPS.HARMONIC.positive)) {
+				types.result = 4;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 5 */
-	if ((think > feel) && (think > instinct)) {
-		if ((withdrawn > assertive) && (withdrawn > dutiful)) {
-			if ((competency > reactive) && (competency > positive)) {
-				type = 5;
-				return type;
+	if ((GROUPS.INTELLIGENCE.thinking > GROUPS.INTELLIGENCE.feeling) &&
+	(GROUPS.INTELLIGENCE.thinking > GROUPS.INTELLIGENCE.instinct))
+		if ((GROUPS.HORNEVIAN.withdrawn > GROUPS.HORNEVIAN.assertive) &&
+		(GROUPS.HORNEVIAN.withdrawn > GROUPS.HORNEVIAN.dutiful))
+			if ((GROUPS.HARMONIC.competency > GROUPS.HARMONIC.reactive) &&
+			(GROUPS.HARMONIC.competency > GROUPS.HARMONIC.positive)) {
+				types.result = 5;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 6 */
-	if ((think > feel) && (think > instinct)) {
-		if ((dutiful > assertive) && (dutiful > withdrawn)) {
-			if ((reactive > competency) && (reactive > positive)) {
-				type = 6;
-				return type;
+	if ((GROUPS.INTELLIGENCE.thinking > GROUPS.INTELLIGENCE.feeling) &&
+	(GROUPS.INTELLIGENCE.thinking > GROUPS.INTELLIGENCE.instinct))
+		if ((GROUPS.HORNEVIAN.dutiful > GROUPS.HORNEVIAN.assertive) &&
+		(GROUPS.HORNEVIAN.dutiful > GROUPS.HORNEVIAN.withdrawn))
+			if ((GROUPS.HARMONIC.reactive > GROUPS.HARMONIC.competency) &&
+			(GROUPS.HARMONIC.reactive > GROUPS.HARMONIC.positive)) {
+				types.result = 6;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 7 */
-	if ((think > feel) && (think > instinct)) {
-		if ((assertive > dutiful) && (assertive > withdrawn)) {
-			if ((positive > competency) && (positive > reactive)) {
-				type = 7;
-				return type;
+	if ((GROUPS.INTELLIGENCE.thinking > GROUPS.INTELLIGENCE.feeling) &&
+	(GROUPS.INTELLIGENCE.thinking > GROUPS.INTELLIGENCE.instinct))
+		if ((GROUPS.HORNEVIAN.assertive > GROUPS.HORNEVIAN.dutiful) &&
+		(GROUPS.HORNEVIAN.assertive > GROUPS.HORNEVIAN.withdrawn))
+			if ((GROUPS.HARMONIC.positive > GROUPS.HARMONIC.competency) &&
+			(GROUPS.HARMONIC.positive > GROUPS.HARMONIC.reactive)) {
+				types.result = 7;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 8 */
-	if ((instinct > think) && (instinct > feel)) {
-		if ((assertive > dutiful) && (assertive > withdrawn)) {
-			if ((reactive > competency) && (reactive > positive)) {
-				type = 8;
-				return type;
+	if ((GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.thinking) &&
+	(GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.feeling))
+		if ((GROUPS.HORNEVIAN.assertive > GROUPS.HORNEVIAN.dutiful) &&
+		(GROUPS.HORNEVIAN.assertive > GROUPS.HORNEVIAN.withdrawn))
+			if ((GROUPS.HARMONIC.reactive > GROUPS.HARMONIC.competency) &&
+			(GROUPS.HARMONIC.reactive > GROUPS.HARMONIC.positive)) {
+				types.result = 8;
+				return types.result;
 			}
-		}
-	}
-
 	/* Triads method: Type 9 */
-	if ((instinct > think) && (instinct > feel)) {
-		if ((withdrawn > dutiful) && (withdrawn > assertive)) {
-			if ((positive > reactive) && (positive > competency)) {
-				type = 9;
-				return type;
+	if ((GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.thinking) &&
+	(GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.feeling))
+		if ((GROUPS.HORNEVIAN.withdrawn > GROUPS.HORNEVIAN.dutiful) &&
+		(GROUPS.HORNEVIAN.withdrawn > GROUPS.HORNEVIAN.assertive))
+			if ((GROUPS.HARMONIC.positive > GROUPS.HARMONIC.reactive) &&
+			(GROUPS.HARMONIC.positive > GROUPS.HARMONIC.competency)) {
+				types.result = 9;
+				return types.result;
 			}
-		}
-	}
-
-	return type;
+	return types.result;
 }
 
 /* Function to calculate the Enneagram Type wing based on the main result and
  * other scores on the test */
-int res_wing(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
-	int wing;
-
-	switch (type) {
+int res_wing(TYPE types) {
+	switch (types.result) {
 		case 1:
-			if (a == f)
-				wing = 0;
+			if (types.a_9 == types.f_2)
+				types.wing = 0;
 			else
-				wing = a > f ? 9 : 2;
-		break;
-
+				types.wing = types.a_9 > types.f_2 ? 9 : 2;
+			break;
 		case 2:
-			if (d == c)
-				wing = 0;
+			if (types.d_1 == types.c_3)
+				types.wing = 0;
 			else
-				wing = d > c ? 1 : 3;
-		break;
-
+				types.wing = types.d_1 > types.c_3 ? 1 : 3;
+			break;
 		case 3:
-			if (f == e)
-				wing = 0;
+			if (types.f_2 == types.e_4)
+				types.wing = 0;
 			else
-				wing = f > e ? 2 : 4;
-		break;
-
+				types.wing = types.f_2 > types.e_4 ? 2 : 4;
+			break;
 		case 4:
-			if (c == h)
-				wing = 0;
+			if (types.c_3 == types.h_5)
+				types.wing = 0;
 			else
-				wing = c > h ? 3 : 5;
-		break;
-
+				types.wing = types.c_3 > types.h_5 ? 3 : 5;
+			break;
 		case 5:
-			if (e == b)
-				wing = 0;
+			if (types.e_4 == types.b_6)
+				types.wing = 0;
 			else
-				wing = e > b ? 4 : 6;
-		break;
-
+				types.wing = types.e_4 > types.b_6 ? 4 : 6;
+			break;
 		case 6:
-			if (h == i)
-				wing = 0;
+			if (types.h_5 == types.i_7)
+				types.wing = 0;
 			else
-				wing = h > i ? 5 : 7;
-		break;
-
+				types.wing = types.h_5 > types.i_7 ? 5 : 7;
+			break;
 		case 7:
-			if (b == g)
-				wing = 0;
+			if (types.b_6 == types.g_8)
+				types.wing = 0;
 			else
-				wing = b > g ? 6 : 8;
-		break;
-
+				types.wing = types.b_6 > types.g_8 ? 6 : 8;
+			break;
 		case 8:
-			if (i == a)
-				wing = 0;
+			if (types.i_7 == types.a_9)
+				types.wing = 0;
 			else
-				wing = i > a ? 7 : 9;
-		break;
-
+				types.wing = types.i_7 > types.a_9 ? 7 : 9;
+			break;
 		case 9:
-			if (g == d)
-				wing = 0;
+			if (types.g_8 == types.d_1)
+				types.wing = 0;
 			else
-				wing = g > d ? 8 : 1;
-		break;
-
+				types.wing = types.g_8 > types.d_1 ? 8 : 1;
+			break;
 		default:
-			wing = 0;
+			types.wing = 0;
 	}
-
-	return wing;
+	return types.wing;
 }
