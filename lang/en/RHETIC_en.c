@@ -44,7 +44,7 @@ void print_instructions_en(void) {
 	"we have four \"selves\": our past self, our present self, our ideal self, and\n"
 	"our self as others see us. The RHETI is attempting to discern only your past\n"
 	"self. Therefore, it's essential that you keep your focus on answering in your\n"
-	"past self only, and not mix your past, present, ideal, or social self.\n",
+	"past self only, and not mix your past, present, ideal, or social self.\n\n",
 	RED, RESET_C);
 }
 
@@ -60,17 +60,17 @@ void print_result_en(TYPE types) {
 	RESULT.wing = res_wing(types);
 
 	if (RESULT.wing > 0)
-		printf("\nYour type is likely: %sEnneagram Type %huw%hu%s\n", RED, RESULT.type, RESULT.wing, RESET_C);
+		printf("\nYour type is likely: %sEnneagram Type %dw%d%s\n", RED, RESULT.type, RESULT.wing, RESET_C);
 	else if (RESULT.type == 0 && RESULT.wing == 0)
 		printf("\nYour type is likely: %sa sneaky bastard%s\n", RED, RESET_C);
 	else if (RESULT.wing == 0) 
-		printf("\nYour type is likely: %sEnneagram Type %hu%s (wing couldn't be calculated)\n",
+		printf("\nYour type is likely: %sEnneagram Type %d%s (wing couldn't be calculated)\n",
 		RED, RESULT.type, RESET_C);
 
 	printf("\nScore:\n"
-	"Type 1: %hu\tType 2: %hu\tType 3: %hu\n"
-	"Type 4: %hu\tType 5: %hu\tType 6: %hu\n"
-	"Type 7: %hu\tType 8: %hu\tType 9: %hu\n",
+	"Type 1: %d\tType 2: %d\tType 3: %d\n"
+	"Type 4: %d\tType 5: %d\tType 6: %d\n"
+	"Type 7: %d\tType 8: %d\tType 9: %d\n",
 	types.d_1, types.f_2, types.c_3, types.e_4, types.h_5, types.b_6, types.i_7, types.g_8, types.a_9);
 
 	printf("\nThanks for trying out RHETIC! :)\n");

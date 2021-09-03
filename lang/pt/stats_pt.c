@@ -7,7 +7,6 @@ extern TYPE types_global;
 
 /* Função para imprimir cada par de afirmações do teste em Português(BR) */
 void stats_pt(void) {
-	TYPE types;
 	/* Par de Frases 1 */
 	stats_form("1.Eu tenho sido romântico e imaginativo. [E]",
 	"Eu tenho sido pragmático e realista. [B]", 

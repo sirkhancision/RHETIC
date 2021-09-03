@@ -17,21 +17,24 @@ TYPE types_global = {
 };
 
 int main(void) {
-	int filec; /* Declared as int due to use of EOF */
-	char lang, ins_or_test;
-	FILE *ennea_sym;
+	int filec; /* Characters from the file stream */
+	int lang = 0; /* Variable to define the language of the UI */
+	int ins_or_test = 0; /* Variable to choose between having instructions or not */
+	FILE *ennea_sym; /* Pointer to the text file containing ASCII art of the Enneagram symbol */
 
 	/* Print greeting */
 	/* Checks if ennea_sym file exists beforehand */
 	if (!(ennea_sym = fopen("include/ennea_sym.txt", "r"))) {
-		printf("\"ennea_sym\" file missing\n");
+		printf("\"ennea_sym.txt\" file missing\n");
 		return 1;
 	}
 
 	printf("%s", CYAN); /* Add cyan color to ennea_sym content */
 	while ((filec = fgetc(ennea_sym)) != EOF)
-		putchar(filec);
-	fclose(ennea_sym);
+		if (putchar(filec) == EOF)
+			printf("Error printing character.\n");
+	if (fclose(ennea_sym) == EOF)
+		printf("Error closing ennea_sym.txt\n");
 	printf("%s", RESET_C); /* Reset color */
 
 	printf("RHETIC v1.42-4\n"
@@ -44,64 +47,63 @@ int main(void) {
 		"%s[1] English%s\t[2] Português(BR)%s\t[3] Français(CA)%s\n"
 		"Enter any other key to exit.\n",
 		RED, GREEN, BLUE, RESET_C);
-	while ((lang = getchar()) && (getchar() != '\n'));
+	if (scanf("%d", &lang) == EOF) {
+		printf("Couldn't read input.\n");
+		return 2;
+	}
 
 	/* Language: English */
-	if (lang == '1') {
+	if (lang == 1) {
 		print_greet_en();
 
-		while ((ins_or_test = getchar()) && (getchar() != '\n'));
+		while (ins_or_test != EOF) {
+			if (scanf("%d", &ins_or_test) == EOF) {
+				printf("Couldn't read input.\n");
+				return 2;
+			}
 
-		if (ins_or_test == '1') {
-			/* Instructions */
-			print_instructions_en();
-			putchar('\n');
-
-			/* Go to test */
-			while (ins_or_test != '2') {
+			if (ins_or_test == 1) {
+				/* Instructions */
+				print_instructions_en();
 				printf("Enter [2] to proceed to the test.\n");
-				while ((ins_or_test = getchar()) && (getchar() != '\n'));
+			}
+			else if (ins_or_test == 2) {
+				/* The RHETI test */
+				stats_eng(); /* Print statements */
+
+				/* Results */
+				print_result_en(types_global);
+				ins_or_test = EOF; /* To exit the loop */
 			}
 		}
-
-		if (ins_or_test == '2') {
-			/* The RHETI test */
-			stats_eng(); /* Print statements */
-
-			/* Results */
-			print_result_en(types_global);
-		}
 	}
-
 	/* Linguagem: Português(BR) */
-	else if (lang == '2') {
+	else if (lang == 2) {
 		print_greet_pt();
 
-		while ((ins_or_test = getchar()) && (getchar() != '\n'));
+		while (ins_or_test != EOF) {
+			if (scanf("%d", &ins_or_test) == EOF) {
+				printf("Não foi possível ler a entrada.\n");
+				return 2;
+			}
 
-		if (ins_or_test == '1') {
-			/* Instruções */
-			print_instructions_pt();
-			putchar('\n');
+			if (ins_or_test == 1) {
+				/* Instruções */
+				print_instructions_pt();
+				printf("Digite [2] para prosseguir com o teste.\n");
+			}
+			else if (ins_or_test == 2) {
+				/* O teste RHETI */
+				stats_pt(); /* Imprimir frases */
 
-			/* Ir ao teste */
-			while (ins_or_test != '2') {
-				printf("Entre com [2] para prosseguir com o teste.\n");
-				while ((ins_or_test = getchar()) && (getchar() != '\n'));
+				/* Resultados */
+				print_result_pt(types_global);
+				ins_or_test = EOF; /* Para sair do loop */
 			}
 		}
-
-		if (ins_or_test == '2') {
-			/* O teste RHETI */
-			stats_pt(); /* Imprimir frases */
-
-			/* Resultados */
-			print_result_pt(types_global);
-		}
 	}
-
 	/* Langue: Français(CA) */
-	else if (lang == '3')
+	else if (lang == 3)
 		printf("Soon\n");
 
 	return 0;

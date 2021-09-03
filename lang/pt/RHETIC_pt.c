@@ -46,7 +46,7 @@ void print_instructions_pt(void) {
 	"e o eu como os outros nos veem. O RHETI está tentando discernir apenas o seu\n"
 	"eu do passado. Portanto, é essencial que você mantenha o foco em responder\n"
 	"apenas no seu eu do passado, e não misturar o seu eu do passado, presente,\n"
-	"ideal, ou social.\n", RED, RESET_C);
+	"ideal, ou social.\n\n", RED, RESET_C);
 }
 
 /* Função para imprimir os resultados do teste em Português(BR) */
@@ -61,16 +61,16 @@ void print_result_pt(TYPE types) {
 	RESULT.wing = res_wing(types);
 
 	if (RESULT.wing > 0)
-		printf("\nSeu tipo é provavelmente: %sTipo %huw%hu do Eneagrama%s\n", RED, RESULT.type, RESULT.wing, RESET_C);
+		printf("\nSeu tipo é provavelmente: %sTipo %dw%d do Eneagrama%s\n", RED, RESULT.type, RESULT.wing, RESET_C);
 	else if (RESULT.type == 0 && RESULT.wing == 0)
 		printf("\nSeu tipo é provavelmente: %sum malandro sorrateiro%s\n", RED, RESET_C);
 	else if (RESULT.wing == 0)
-		printf("\nSeu tipo é provavelmente: %sTipo %hu do Eneagrama%s (asa não pôde ser calculada)\n", RED, RESULT.type, RESET_C);
+		printf("\nSeu tipo é provavelmente: %sTipo %d do Eneagrama%s (asa não pôde ser calculada)\n", RED, RESULT.type, RESET_C);
 
 	printf("\nPontuação:\n"
-	"Tipo 1: %hu\tTipo 2: %hu\tTipo 3: %hu\n"
-	"Tipo 4: %hu\tTipo 5: %hu\tTipo 6: %hu\n"
-	"Tipo 7: %hu\tTipo 8: %hu\tTipo 9: %hu\n", 
+	"Tipo 1: %d\tTipo 2: %d\tTipo 3: %d\n"
+	"Tipo 4: %d\tTipo 5: %d\tTipo 6: %d\n"
+	"Tipo 7: %d\tTipo 8: %d\tTipo 9: %d\n", 
 	types.d_1, types.f_2, types.c_3, types.e_4, types.h_5, types.b_6, types.i_7, types.g_8, types.a_9);
 
 	printf("\nObrigado por testar o RHETIC! :)\n");

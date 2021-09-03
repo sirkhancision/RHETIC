@@ -1,25 +1,30 @@
 #include "../../include/stats_en.h"
 #include "../../include/type.h"
+#include <ctype.h>
 #include <stdio.h>
 
 extern TYPE types_global;
 
 /* Function that contains the basic structure/form of each question in the test */
-void stats_form(char stat1[120], char stat2[120], char resp1, char resp2, int *stat1_type, int *stat2_type) {
-	char resp;
+void stats_form(char stat1[], char stat2[], char resp1, char resp2, int *stat1_type, int *stat2_type) {
+	char resp; /* character of user's answer */
 	int i;
-	putchar('\n');
+	if (putchar('\n') == EOF)
+		printf("Error printing newline character.\n");
 
-	puts(stat1);
-	puts(stat2);
+	if (puts(stat1) == EOF)
+		printf("Error printing statement 1.\n");
+	if (puts(stat2) == EOF)
+		printf("Error printing statement 2.\n");
 
 	for (i = 0; i == 0;) {
-		resp = getchar();
-		if (resp == resp1 || resp == (resp1 + 32)) /* resp1 + 32 = Lower-case character */ {
+		if (scanf("%c", &resp) == EOF)
+			printf("Error reading statement answer.\n");
+		if (resp == resp1 || resp == tolower(resp1)) {
 			++(*stat1_type);
 			++i;
 		}
-		else if (resp == resp2 || resp == (resp2 + 32)) /* resp2 + 32 = Lower-case character */ {
+		else if (resp == resp2 || resp == tolower(resp2)) {
 			++(*stat2_type);
 			++i;
 		}

@@ -2,7 +2,7 @@
 
 /* Code modified from GeeksForGeeks */
 /* A utility function to swap two elements */
-void swap(int *a, int *b) {
+static void swap(int *a, int *b) {
 	int t = *a;
 	*a = *b;
 	*b = t;
@@ -13,7 +13,7 @@ void swap(int *a, int *b) {
     array, and places all smaller (smaller than pivot)
    to left of pivot and all greater elements to right
    of pivot */
-int partition(int arr[], int low, int high) {
+static int partition(int arr[], int low, int high) {
 	int pivot = arr[high]; /* pivot */
 	int i = (low - 1);     /* Index of smaller element */
 	int j;

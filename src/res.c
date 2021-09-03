@@ -17,19 +17,14 @@ int res_type(TYPE types) {
 		.HARMONIC.competency = types.d_1 + types.c_3 + types.h_5
 	};
 
-	int types_array[9];
-	types_array[0] = types.a_9;
-	types_array[1] = types.b_6;
-	types_array[2] = types.c_3;
-	types_array[3] = types.d_1;
-	types_array[4] = types.e_4;
-	types_array[5] = types.f_2;
-	types_array[6] = types.g_8;
-	types_array[7] = types.h_5;
-	types_array[8] = types.i_7;
+	int types_array[9] = {
+		types.a_9, types.b_6, types.c_3,
+		types.d_1, types.e_4, types.f_2,
+		types.g_8, types.h_5, types.i_7
+	};
 
 	/* Sort biggest value */
-	quicksort(types_array, 0, (sizeof(types_array) / sizeof(types_array[0])) - 1);
+	quicksort(types_array, 0, ((int) sizeof(types_array) / (int) sizeof(types_array[0])) - 1);
 	/* Highest score method */
 	/* Maybe make this implementation better */
 	if (types_array[8] == 0)
