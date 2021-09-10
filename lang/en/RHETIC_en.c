@@ -49,18 +49,19 @@ void print_instructions_en(void) {
 }
 
 /* Prints the test's results in English */
-void print_result_en(TYPE types) {
+void print_result_en(TYPE *types) {
 	struct RESULT {
 		int type, wing;
 	} RESULT;
 
-	printf("\nRESULTS:\n");
-
 	RESULT.type = res_type(types);
 	RESULT.wing = res_wing(types);
 
+	printf("\nRESULTS:\n");
+
 	if (RESULT.wing > 0)
-		printf("\nYour type is likely: %sEnneagram Type %dw%d%s\n", RED, RESULT.type, RESULT.wing, RESET_C);
+		printf("\nYour type is likely: %sEnneagram Type %dw%d%s\n",
+			RED, RESULT.type, RESULT.wing, RESET_C);
 	else if (RESULT.type == 0 && RESULT.wing == 0)
 		printf("\nYour type is likely: %sa sneaky bastard%s\n", RED, RESET_C);
 	else if (RESULT.wing == 0) 
@@ -68,10 +69,12 @@ void print_result_en(TYPE types) {
 		RED, RESULT.type, RESET_C);
 
 	printf("\nScore:\n"
-	"Type 1: %d\tType 2: %d\tType 3: %d\n"
-	"Type 4: %d\tType 5: %d\tType 6: %d\n"
-	"Type 7: %d\tType 8: %d\tType 9: %d\n",
-	types.d_1, types.f_2, types.c_3, types.e_4, types.h_5, types.b_6, types.i_7, types.g_8, types.a_9);
+		"Type 1: %d\tType 2: %d\tType 3: %d\n"
+		"Type 4: %d\tType 5: %d\tType 6: %d\n"
+		"Type 7: %d\tType 8: %d\tType 9: %d\n",
+		types->d_1, types->f_2, types->c_3,
+		types->e_4, types->h_5, types->b_6,
+		types->i_7, types->g_8, types->a_9);
 
 	printf("\nThanks for trying out RHETIC! :)\n");
 }

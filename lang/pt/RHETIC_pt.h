@@ -4,6 +4,6 @@
 
 void print_greet_pt(void);
 void print_instructions_pt(void);
-void print_result_pt(TYPE types);
+void print_result_pt(TYPE *types);
 
 #endif

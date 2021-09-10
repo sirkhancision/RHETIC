@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -march=native -O2 -pedantic -pipe -Wall
+CFLAGS = -march=native -O2 -pedantic -pipe -Wall -Werror
 
 INCLUDES = -I/include
 

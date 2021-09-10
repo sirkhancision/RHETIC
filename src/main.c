@@ -11,16 +11,14 @@
 #include "../lang/en/RHETIC_en.h" /* Header for english general text */
 #include "../lang/pt/RHETIC_pt.h" /* Header for portuguese general text */
 #include <stdio.h>
-
-TYPE types_global = {
-	.a_9 = 0, .b_6 = 0, .c_3 = 0, .d_1 = 0, .e_4 = 0, .f_2 = 0, .g_8 = 0, .h_5 = 0, .i_7 = 0
-};
+#include <stdlib.h>
 
 int main(void) {
 	int filec; /* Characters from the file stream */
 	int lang = 0; /* Variable to define the language of the UI */
 	int ins_or_test = 0; /* Variable to choose between having instructions or not */
 	FILE *ennea_sym; /* Pointer to the text file containing ASCII art of the Enneagram symbol */
+	TYPE *types = (struct TYPE*) malloc(sizeof(struct TYPE));
 
 	/* Print greeting */
 	/* Checks if ennea_sym file exists beforehand */
@@ -69,10 +67,10 @@ int main(void) {
 			}
 			else if (ins_or_test == 2) {
 				/* The RHETI test */
-				stats_eng(); /* Print statements */
+				stats_eng(types); /* Print statements */
 
 				/* Results */
-				print_result_en(types_global);
+				print_result_en(types);
 				ins_or_test = EOF; /* To exit the loop */
 			}
 		}
@@ -94,10 +92,10 @@ int main(void) {
 			}
 			else if (ins_or_test == 2) {
 				/* O teste RHETI */
-				stats_pt(); /* Imprimir frases */
+				stats_pt(types); /* Imprimir frases */
 
 				/* Resultados */
-				print_result_pt(types_global);
+				print_result_pt(types);
 				ins_or_test = EOF; /* Para sair do loop */
 			}
 		}
@@ -106,5 +104,6 @@ int main(void) {
 	else if (lang == 3)
 		printf("Soon\n");
 
+	free(types);
 	return 0;
 }

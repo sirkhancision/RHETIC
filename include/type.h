@@ -2,9 +2,10 @@
 #define TYPE_H
 
 typedef struct TYPE {
-	int d_1, f_2, c_3, e_4, h_5, b_6, i_7, g_8, a_9; /* the nine enneagram types */
+	int d_1, f_2, c_3,
+	e_4, h_5, b_6,
+	i_7, g_8, a_9; /* the nine enneagram types */
 	int result; /* the resulting type of the test */
-	int wing; /* the resulting wing of the type */
 } TYPE;
 
 typedef struct GROUPS {

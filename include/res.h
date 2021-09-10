@@ -2,7 +2,7 @@
 #define RES_H
 #include "type.h"
 
-int res_type(TYPE types);
-int res_wing(TYPE types);
+int res_type(TYPE *types);
+int res_wing(TYPE *types);
 
 #endif
