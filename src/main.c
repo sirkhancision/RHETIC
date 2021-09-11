@@ -1,4 +1,4 @@
-/*	RHETIC v1.42-4
+/*	RHETIC v1.42-41
  *	by sirkhancision
  *	RHETI v2.5 is copyrighted to
  *	Don Richard Riso and Russ Hudson
@@ -19,12 +19,16 @@ int main(void) {
 	int ins_or_test = 0; /* Variable to choose between having instructions or not */
 	FILE *ennea_sym; /* Pointer to the text file containing ASCII art of the Enneagram symbol */
 	TYPE *types = (struct TYPE*) malloc(sizeof(struct TYPE));
+	if (types == NULL) {
+            printf("Error allocating memory for \"types\".\n");
+            exit(EXIT_FAILURE);
+	}
 
 	/* Print greeting */
 	/* Checks if ennea_sym file exists beforehand */
 	if (!(ennea_sym = fopen("include/ennea_sym.txt", "r"))) {
 		printf("\"ennea_sym.txt\" file missing\n");
-		return 1;
+		exit(EXIT_FAILURE);
 	}
 
 	printf("%s", CYAN); /* Add cyan color to ennea_sym content */
@@ -35,19 +39,19 @@ int main(void) {
 		printf("Error closing ennea_sym.txt\n");
 	printf("%s", RESET_C); /* Reset color */
 
-	printf("RHETIC v1.42-4\n"
+	printf("RHETIC v1.42-41\n"
 		"This program was made by %ssirkhancision%s.\n"
 		"All rights are reserved to the respective owners of this test.\n",
 		GREEN, RESET_C);
 
 	/* Select the language of the test */
 	printf("\nLANG:\n"
-		"%s[1] English%s\t[2] Português(BR)%s\t[3] Français(CA)%s\n"
+		"%s[1] English%s    [2] Português(BR)%s    [3] Français(CA)%s\n"
 		"Enter any other key to exit.\n",
 		RED, GREEN, BLUE, RESET_C);
 	if (scanf("%d", &lang) == EOF) {
 		printf("Couldn't read input.\n");
-		return 2;
+		exit(EXIT_FAILURE);
 	}
 
 	/* Language: English */
@@ -57,7 +61,7 @@ int main(void) {
 		while (ins_or_test != EOF) {
 			if (scanf("%d", &ins_or_test) == EOF) {
 				printf("Couldn't read input.\n");
-				return 2;
+				exit(EXIT_FAILURE);
 			}
 
 			if (ins_or_test == 1) {
@@ -82,7 +86,7 @@ int main(void) {
 		while (ins_or_test != EOF) {
 			if (scanf("%d", &ins_or_test) == EOF) {
 				printf("Não foi possível ler a entrada.\n");
-				return 2;
+				exit(EXIT_FAILURE);
 			}
 
 			if (ins_or_test == 1) {
