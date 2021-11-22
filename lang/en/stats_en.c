@@ -20,7 +20,7 @@ void stats_form(char stat1[], char stat2[], char resp1, char resp2,
     for (i = 0; i == 0;) {
         if (scanf("%c", &resp) == EOF)
             puts("Error reading statement answer.");
-        
+
         if (resp == resp1 || resp == tolower(resp1)) {
             ++(*stat1_type);
             ++i;
@@ -29,7 +29,7 @@ void stats_form(char stat1[], char stat2[], char resp1, char resp2,
             ++i;
         } else if (resp == '>')
             ++i;
-        else 
+        else
             continue;
     }
 }
@@ -225,7 +225,7 @@ void stats_eng(TYPE *types) {
     &types->h_5, &types->f_2);
 
     /* Statement Pair 45 */
-    stats_form("45.Dealing with details has not been one of my strong suits. [I]", "I have excelled at dealing with details. [C]", 
+    stats_form("45.Dealing with details has not been one of my strong suits. [I]", "I have excelled at dealing with details. [C]",
     'I', 'C', &types->i_7, &types->c_3);
 
     /* Statement Pair 46 */

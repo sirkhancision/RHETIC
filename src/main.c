@@ -1,7 +1,7 @@
-/*	RHETIC v1.42-41
- *	by sirkhancision
- *	RHETI v2.5 is copyrighted to
- *	Don Richard Riso and Russ Hudson
+/*  RHETIC v1.42-41
+ *  by sirkhancision
+ *  RHETI v2.5 is copyrighted to
+ *  Don Richard Riso and Russ Hudson
  */
 
 #include "../include/colors.h" /* Header for color macros */
@@ -35,7 +35,7 @@ int main(void) {
     while ((filec = fgetc(ennea_sym)) != EOF)
         if (putchar(filec) == EOF)
             puts("Error printing character.");
-    
+
     if (fclose(ennea_sym) == EOF)
         puts("Error closing ennea_sym.txt.");
     printf("%s", RESET_C); /* Reset color */
@@ -50,7 +50,7 @@ int main(void) {
         "%s[1] English%s    [2] Português(BR)%s    [3] Français(CA)%s\n"
         "Enter any other key to exit.\n",
         RED, GREEN, BLUE, RESET_C);
-    
+
     if (scanf("%d", &lang) == EOF) {
         puts("Couldn't read input.");
         exit(EXIT_FAILURE);
@@ -108,6 +108,6 @@ int main(void) {
     }
 
     free(types);
-    
+
     return 0;
 }

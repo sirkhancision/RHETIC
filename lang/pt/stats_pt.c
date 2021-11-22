@@ -7,16 +7,16 @@
 void stats_pt(TYPE *types) {
     /* Par de Frases 1 */
     stats_form("1.Eu tenho sido romântico e imaginativo. [E]",
-    "Eu tenho sido pragmático e realista. [B]", 
+    "Eu tenho sido pragmático e realista. [B]",
     'E', 'B', &types->e_4, &types->b_6);
 
     /* Par de Frases 2 */
     stats_form("2.Eu tendi a assumir confrontos. [G]",
-    "Eu tendi a evitar confrontos. [A]", 
+    "Eu tendi a evitar confrontos. [A]",
     'G', 'A', &types->g_8, &types->a_9);
 
     /* Par de Frases 3 */
-    stats_form("3.Eu tipicamente fui diplomático, charmoso e ambicioso. [C]", "Eu tipicamente fui direto, formal e idealista. [D]", 
+    stats_form("3.Eu tipicamente fui diplomático, charmoso e ambicioso. [C]", "Eu tipicamente fui direto, formal e idealista. [D]",
     'C', 'D', &types->c_3, &types->d_1);
 
     /* Par de Frases 4 */
@@ -41,7 +41,7 @@ void stats_pt(TYPE *types) {
 
     /* Par de Frases 8 */
     stats_form("8.Eu precisei mostrar afeto às pessoas. [F]",
-    "Eu precisei manter uma certa distância das pessoas. [H]", 
+    "Eu precisei manter uma certa distância das pessoas. [H]",
     'F', 'H', &types->f_2, &types->h_5);
 
     /* Par de Frases 9 */
@@ -142,7 +142,7 @@ void stats_pt(TYPE *types) {
     /* Par de Frases 32 */
     stats_form("32.Perseguir meus interesses pessoais tem sido mais importante para mim do que\n"
     "ter estabilidade e segurança. [H]", "Ter estabilidade e segurança tem sido mais importante para mim do que\n"
-    "perseguir meus interesses pessoais. [B]", 
+    "perseguir meus interesses pessoais. [B]",
     'H', 'B', &types->h_5, &types->b_6);
 
     /* Par de Frases 33 */
@@ -194,7 +194,7 @@ void stats_pt(TYPE *types) {
     /* Par de Frases 46 */
     stats_form("46.Eu frequentemente tenho enfatizado o quão diferente eu sou das outras\n"
     "pessoas, especialmente da minha família. [E]", "Eu frequentemente tenho enfatizado o quanto eu tenho em comum com as outras\n"
-    "pessoas, especialmente com a minha família. [A]", 
+    "pessoas, especialmente com a minha família. [A]",
     'E', 'A', &types->e_4, &types->a_9);
 
     /* Par de Frases 47 */
@@ -229,12 +229,12 @@ void stats_pt(TYPE *types) {
     stats_form("54.Ser o centro das atenções geralmente é algo natural para mim. [C]", "Ser o centro das atenções geralmente é algo estranho para mim. [E]", 'C', 'E', &types->c_3, &types->e_4);
 
     /* Par de Frases 55 */
-    stats_form("55.Eu tenho sido cuidadoso e tentado me preparar para problemas imprevistos. [B]", "Eu tenho sido espontâneo e preferido improvisar conforme problemas aparecem. [I]", 
+    stats_form("55.Eu tenho sido cuidadoso e tentado me preparar para problemas imprevistos. [B]", "Eu tenho sido espontâneo e preferido improvisar conforme problemas aparecem. [I]",
     'B', 'I', &types->b_6, &types->i_7);
 
     /* Par de Frases 56 */
     stats_form("56.Eu já fiquei irritado quando os outros não demonstraram apreciação suficiente\n"
-    "pelo o que fiz por eles. [F]", "Eu já fiquei irritado quando os outros não seguiram o que eu disse a eles. [D]", 
+    "pelo o que fiz por eles. [F]", "Eu já fiquei irritado quando os outros não seguiram o que eu disse a eles. [D]",
     'F', 'D', &types->f_2, &types->d_1);
 
     /* Par de Frases 57 */
@@ -352,7 +352,7 @@ void stats_pt(TYPE *types) {
     "Eu tenho preferido deixar que o mundo saiba que eu estou aqui. [G]", 'H', 'G', &types->h_5, &types->g_8);
 
     /* Par de Frases 84 */
-    stats_form("84.Eu frequentemente fui perturbado por ansiedade, insegurança e dúvidas. [B]", "Eu frequentemente fui perturbado por raiva, perfeccionismo e impaciência. [D]", 
+    stats_form("84.Eu frequentemente fui perturbado por ansiedade, insegurança e dúvidas. [B]", "Eu frequentemente fui perturbado por raiva, perfeccionismo e impaciência. [D]",
     'B', 'D', &types->b_6, &types->d_1);
 
     /* Par de Frases 85 */
@@ -473,7 +473,7 @@ void stats_pt(TYPE *types) {
     /* Par de Frases 111 */
     stats_form("111.Eu tenho me orgulhado da minha habilidade de ser flexível – o que é\n"
     "apropriado ou importante frequentemente muda. [C]", "Eu tenho me orgulhado da minha habilidade de me posicionar sobre algo – eu\n"
-    "tenho sido firme sobre o que acredito. [D]", 
+    "tenho sido firme sobre o que acredito. [D]",
     'C', 'D', &types->c_3, &types->d_1);
 
     /* Par de Frases 112 */
@@ -523,7 +523,7 @@ void stats_pt(TYPE *types) {
 
     /* Par de Frases 122 */
     stats_form("122.Eu tenho tido uma tendência de ficar pensando sobre as\n"
-    "coisas do passado. [E]", "Eu tenho tido uma tendência de ficar antecipando as coisas que eu vou fazer. [I]", 
+    "coisas do passado. [E]", "Eu tenho tido uma tendência de ficar antecipando as coisas que eu vou fazer. [I]",
     'E', 'I', &types->e_4, &types->i_7);
 
     /* Par de Frases 123 */
@@ -614,6 +614,6 @@ void stats_pt(TYPE *types) {
     /* Par de Frases 144 */
     stats_form("144.Eu evitei intimidade quando eu temi que eu fosse ser sobrecarregado\n"
     "pelas necessidades e exigências das pessoas. [H]", "Eu evitei intimidade quando eu temi que eu não fosse ser capaz de atender\n"
-    "às expectativas das pessoas sobre mim. [C]", 
+    "às expectativas das pessoas sobre mim. [C]",
     'H', 'C', &types->h_5, &types->c_3);
 }

@@ -20,7 +20,7 @@ MAIN = RHETIC
 all:    $(MAIN)
 	@echo  RHETIC has been compiled
 
-$(MAIN): $(OBJS) 
+$(MAIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
 .c.o:
@@ -31,4 +31,4 @@ clean:
 
 depend: $(SRCS)
 	makedepend $(INCLUDES) $^
-	
+

@@ -27,7 +27,7 @@ int res_type(TYPE *types) {
     /* Sort biggest value */
     quicksort(types_array, 0, ((int) sizeof(types_array) /
         (int) sizeof(types_array[0])) - 1);
-    
+
     /* Highest score method */
     types->result = types_array[8] == types->a_9 ? 9 :
         types_array[8] == types->b_6 ? 6 :
@@ -38,7 +38,7 @@ int res_type(TYPE *types) {
         types_array[8] == types->g_8 ? 8 :
         types_array[8] == types->h_5 ? 5 :
         types_array[8] == types->i_7 ? 7 : 0;
-    
+
     /* In case there're two top types with same score, select the one
     with higher scored wings */
     if (types_array[8] == types_array[7]) {
@@ -51,8 +51,8 @@ int res_type(TYPE *types) {
             (types_array[7] == types->g_8) && (types->result != 8) ? 8 :
             (types_array[7] == types->h_5) && (types->result != 5) ? 5 :
             (types_array[7] == types->i_7) && (types->result != 7) ? 7 : 0;
-        
-        /* This array will be used as a convention for variable name 
+
+        /* This array will be used as a convention for variable name
         and array position correlation */
         int TA_names[9] = {
             types->d_1, types->f_2, types->c_3,
@@ -65,7 +65,7 @@ int res_type(TYPE *types) {
             (TA_names[(penum - 2) % 9] + TA_names[penum % 9]))
                 types->result = penum;
     }
-    
+
     /* Triads method: Type 1 */
     if ((GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.thinking) &&
     (GROUPS.INTELLIGENCE.instinct > GROUPS.INTELLIGENCE.feeling)) {
@@ -155,7 +155,7 @@ int res_type(TYPE *types) {
 * other scores on the test */
 int res_wing(TYPE *types) {
     int wing;
-    
+
     switch (types->result) {
         case 1:
             wing = types->a_9 == types->f_2 ? 0 :
