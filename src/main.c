@@ -5,11 +5,12 @@
  */
 
 #include "../include/colors.h" /* Header for color macros */
-#include "../include/stats_en.h" /* Header for the statements of the test in english */
-#include "../include/stats_pt.h" /* Header for the statements of the test in portuguese */
-#include "../include/type.h" /* Header for the enneagram types */
-#include "../lang/en/RHETIC_en.h" /* Header for english general text */
-#include "../lang/pt/RHETIC_pt.h" /* Header for portuguese general text */
+#include "../include/stats_en.h" /* Header for the statements of the test in English */
+#include "../include/stats_pt.h" /* Header for the statements of the test in Portuguese */
+#include "../include/type.h" /* Header for the Enneagram types */
+#include "../lang/en/RHETIC_en.h" /* Header for English general text */
+#include "../lang/pt/RHETIC_pt.h" /* Header for Portuguese general text */
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -47,9 +48,9 @@ int main(void) {
 
     /* Select the language of the test */
     printf("\nLANG:\n"
-        "%s[1] English%s    [2] Português(BR)%s    [3] Français(CA)%s\n"
+        "%s[1] English%s    [2] Português(BR)%s\n"
         "Enter any other key to exit.\n",
-        RED, GREEN, BLUE, RESET_C);
+        RED, GREEN, RESET_C);
 
     if (scanf("%d", &lang) == EOF) {
         puts("Couldn't read input.");
@@ -58,6 +59,7 @@ int main(void) {
 
     if (lang == 1) {
         /* Language: English */
+        setlocale(LC_ALL, "en_US.UTF-8");
         print_greet_en();
 
         while (ins_or_test != EOF) {
@@ -81,6 +83,7 @@ int main(void) {
         }
     } else if (lang == 2) {
         /* Linguagem: Português(BR) */
+        setlocale(LC_ALL, "pt_BR.UTF-8");
         print_greet_pt();
 
         while (ins_or_test != EOF) {
@@ -102,9 +105,6 @@ int main(void) {
                 ins_or_test = EOF; /* Para sair do loop */
             }
         }
-    } else if (lang == 3) {
-        /* Langue: Français(CA) */
-        puts("Soon.");
     }
 
     free(types);

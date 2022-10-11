@@ -39,7 +39,7 @@ int res_type(TYPE *types) {
         types_array[8] == types->h_5 ? 5 :
         types_array[8] == types->i_7 ? 7 : 0;
 
-    /* In case there're two top types with same score, select the one
+    /* In case there are two top types with same score, select the one
     with higher scored wings */
     if (types_array[8] == types_array[7]) {
         int penum = (types_array[7] == types->a_9) && (types->result != 9) ? 9 :

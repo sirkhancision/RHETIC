@@ -34,8 +34,8 @@ void print_instructions_en(void) {
 
     printf("\nAfter you've taken the test, it's recommended that you read about the enneagram\n"
     "type you got as a result. Personal recommendations are:\n"
-    "%shttps://www.enneagraminstitute.com/%s (english)\n"
-    "%shttps://os16mistypes.wixsite.com/16mistypes%s (portuguese)\n",
+    "%shttps://www.enneagraminstitute.com/%s (English)\n"
+    "%shttps://os16mistypes.wixsite.com/16mistypes%s (Portuguese)\n",
     BLUE, RESET_C, BLUE, RESET_C);
 
     printf("\n%sPLEASE NOTE!%s The accuracy of this test will be increased if you understand that\n"
