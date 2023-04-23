@@ -1,10 +1,9 @@
-#include "../include/res.h"
-#include "../include/quick.h"
-#include "../include/type.h"
+#include "../include/results.h"
+#include "../include/quicksort.h"
+#include "../include/types.h"
 
-/* Function using different algorithms to calculate the Enneagram Type, based on
- * the test's answers */
-int res_type(TYPE *types) {
+/* Calculate the Enneagram Type */
+int result_type(TYPE *types) {
   GROUPS GROUPS = {
       .INTELLIGENCE.feeling = types->f_2 + types->c_3 + types->e_4,
       .INTELLIGENCE.thinking = types->h_5 + types->b_6 + types->i_7,
@@ -14,15 +13,12 @@ int res_type(TYPE *types) {
       .HORNEVIAN.withdrawn = types->e_4 + types->h_5 + types->a_9,
       .HARMONIC.positive = types->f_2 + types->i_7 + types->a_9,
       .HARMONIC.reactive = types->e_4 + types->b_6 + types->g_8,
-      .HARMONIC.competency = types->d_1 + types->c_3 + types->h_5
-  };
+      .HARMONIC.competency = types->d_1 + types->c_3 + types->h_5};
 
   /* This array will be sorted in crescent order */
-  int types_array[9] = {
-        types->d_1, types->f_2, types->c_3,
-        types->e_4, types->h_5, types->b_6,
-        types->i_7, types->g_8, types->a_9
-  };
+  int types_array[9] = {types->d_1, types->f_2, types->c_3,
+                        types->e_4, types->h_5, types->b_6,
+                        types->i_7, types->g_8, types->a_9};
 
   /* Sort biggest value */
   quicksort(types_array, 0,
@@ -43,28 +39,29 @@ int res_type(TYPE *types) {
   /* In case there are two top types with same score, select the one
    * with higher scored wings */
   if (types_array[8] == types_array[7]) {
-    int penum = (types_array[7] == types->a_9) && (types->result != 9)   ? 9
-                : (types_array[7] == types->b_6) && (types->result != 6) ? 6
-                : (types_array[7] == types->c_3) && (types->result != 3) ? 3
-                : (types_array[7] == types->d_1) && (types->result != 1) ? 1
-                : (types_array[7] == types->e_4) && (types->result != 4) ? 4
-                : (types_array[7] == types->f_2) && (types->result != 2) ? 2
-                : (types_array[7] == types->g_8) && (types->result != 8) ? 8
-                : (types_array[7] == types->h_5) && (types->result != 5) ? 5
-                : (types_array[7] == types->i_7) && (types->result != 7) ? 7
-                                                                         : 0;
+    int second_highest =
+        (types_array[7] == types->a_9) && (types->result != 9)   ? 9
+        : (types_array[7] == types->b_6) && (types->result != 6) ? 6
+        : (types_array[7] == types->c_3) && (types->result != 3) ? 3
+        : (types_array[7] == types->d_1) && (types->result != 1) ? 1
+        : (types_array[7] == types->e_4) && (types->result != 4) ? 4
+        : (types_array[7] == types->f_2) && (types->result != 2) ? 2
+        : (types_array[7] == types->g_8) && (types->result != 8) ? 8
+        : (types_array[7] == types->h_5) && (types->result != 5) ? 5
+        : (types_array[7] == types->i_7) && (types->result != 7) ? 7
+                                                                 : 0;
 
     /* This array will be used as a convention for variable name
      * and array position correlation */
-    int TA_names[9] = {
-            types->d_1, types->f_2, types->c_3,
-            types->e_4, types->h_5, types->b_6,
-            types->i_7, types->g_8, types->a_9
-    };
+    int types_array_names[9] = {types->d_1, types->f_2, types->c_3,
+                                types->e_4, types->h_5, types->b_6,
+                                types->i_7, types->g_8, types->a_9};
 
-    if ((TA_names[(types->result - 2) % 9] + TA_names[types->result % 9]) <
-        (TA_names[(penum - 2) % 9] + TA_names[penum % 9])) {
-      types->result = penum;
+    if ((types_array_names[(types->result - 2) % 9] +
+         types_array_names[types->result % 9]) <
+        (types_array_names[(second_highest - 2) % 9] +
+         types_array_names[second_highest % 9])) {
+      types->result = second_highest;
     }
   }
 
@@ -171,9 +168,8 @@ int res_type(TYPE *types) {
   return (types->result);
 }
 
-/* Function to calculate the Enneagram Type wing based on the main result and
- * other scores on the test */
-int res_wing(TYPE *types) {
+/* Calculate the Enneagram Type wing */
+int result_wing(TYPE *types) {
   int wing;
 
   switch (types->result) {

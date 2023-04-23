@@ -1,5 +1,5 @@
-#ifndef TYPE_H
-#define TYPE_H
+#ifndef TYPES_H
+#define TYPES_H
 
 typedef struct TYPE {
   int d_1, f_2, c_3, e_4, h_5, b_6, i_7, g_8,

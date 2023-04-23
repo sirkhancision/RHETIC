@@ -1,7 +1,7 @@
 #include "RHETIC_pt.h"
 #include "../../include/colors.h"
-#include "../../include/res.h"
-#include "../../include/type.h"
+#include "../../include/results.h"
+#include "../../include/types.h"
 #include <stdio.h>
 
 /* Função para imprimir o texto introdutório em Português(BR) */
@@ -75,8 +75,8 @@ void print_result_pt(TYPE *types) {
     int type, wing;
   } RESULT;
 
-  RESULT.type = res_type(types);
-  RESULT.wing = res_wing(types);
+  RESULT.type = result_type(types);
+  RESULT.wing = result_wing(types);
 
   printf("\nRESULTADOS:\n");
 

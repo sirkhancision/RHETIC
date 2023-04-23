@@ -1,4 +1,4 @@
-#include "../include/quick.h"
+#include "../include/quicksort.h"
 
 /* Code modified from GeeksForGeeks */
 /* A utility function to swap two elements */

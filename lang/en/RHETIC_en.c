@@ -1,7 +1,7 @@
 #include "RHETIC_en.h"
 #include "../../include/colors.h"
-#include "../../include/res.h"
-#include "../../include/type.h"
+#include "../../include/results.h"
+#include "../../include/types.h"
 #include <stdio.h>
 
 /* Prints the initial greeting text in English */
@@ -72,8 +72,8 @@ void print_result_en(TYPE *types) {
     int type, wing;
   } RESULT;
 
-  RESULT.type = res_type(types);
-  RESULT.wing = res_wing(types);
+  RESULT.type = result_type(types);
+  RESULT.wing = result_wing(types);
 
   printf("\nRESULTS:\n");
 

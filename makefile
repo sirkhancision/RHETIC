@@ -4,12 +4,12 @@ CFLAGS = -O2 -pedantic -pipe -Wall -Werror
 INCLUDES = -I/include
 
 SRCS = src/main.c\
-	src/quick.c\
-	src/res.c\
+	src/quicksort.c\
+	src/results.c\
 	lang/en/RHETIC_en.c\
-	lang/en/stats_en.c\
+	lang/en/statements_en.c\
 	lang/pt/RHETIC_pt.c\
-	lang/pt/stats_pt.c
+	lang/pt/statements_pt.c
 
 OBJS = $(SRCS:.c=.o)
 
