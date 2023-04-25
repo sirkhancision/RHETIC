@@ -1,34 +1,35 @@
-CC = gcc
-CFLAGS = -O2 -pedantic -pipe -Wall -Werror
+CC := gcc
+CFLAGS := -O2 -pedantic -pipe -Wall -Werror
+LDFLAGS :=
+LDLIBS :=
 
-INCLUDES = -I/include
+INCLUDES := -I/include
 
-SRCS = src/main.c\
-	src/quicksort.c\
-	src/results.c\
-	lang/en/RHETIC_en.c\
-	lang/en/statements_en.c\
-	lang/pt/RHETIC_pt.c\
-	lang/pt/statements_pt.c
+SRCDIR := src
 
-OBJS = $(SRCS:.c=.o)
+BUILDDIR := build
+OBJDIR := $(BUILDDIR)/obj
 
-MAIN = RHETIC
+SOURCES := $(wildcard $(SRCDIR)/*.c)
+OBJECTS := $(patsubst %.c, $(OBJDIR)/%.o, $(notdir $(SOURCES)))
 
-.PHONY: depend clean
+EXECUTABLE := $(BUILDDIR)/RHETIC
 
-all:    $(MAIN)
-	@echo  RHETIC has been compiled
+.PHONY: all clean depend
 
-$(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
+all: $(EXECUTABLE)
 
-.c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) *.o *~ $(MAIN)
+	$(RM) -r $(BUILDDIR)
 
-depend: $(SRCS)
-	makedepend $(INCLUDES) $^
+depend:
+	$(CC) -MM $(CFLAGS) $(INCLUDES) $(SOURCES) > dependencies.mk
 
+-include dependencies.mk

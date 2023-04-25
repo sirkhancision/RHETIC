@@ -35,7 +35,6 @@
 *.i*86
 *.x86_64
 *.hex
-/RHETIC
 
 # Debug files
 *.dSYM/
@@ -54,3 +53,4 @@ dkms.conf
 
 # Directories
 .ccls-cache/
+build
