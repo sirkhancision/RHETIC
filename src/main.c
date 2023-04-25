@@ -4,115 +4,146 @@
  *  Don Richard Riso and Russ Hudson
  */
 
-#include "../include/colors.h" /* Header for color macros */
-#include "../include/statements_en.h" /* Header for the statements of the test in English */
-#include "../include/statements_pt.h" /* Header for the statements of the test in Portuguese */
-#include "../include/types.h"     /* Header for the Enneagram types */
-#include "../lang/en/RHETIC_en.h" /* Header for English general text */
-#include "../lang/pt/RHETIC_pt.h" /* Header for Portuguese general text */
+#include "../include/RHETIC_lang.h" /* Header for text in different languages */
+#include "../include/colors.h"      /* Header for color macros */
+#include "../include/constants.h" /* Header for constants used throughout the project */
+#include "../include/statements.h" /* Header for the statements of the test */
+#include "../include/types.h"      /* Header for the Enneagram types */
 #include <locale.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-int main(void) {
-  int file_stream;  /* Characters from the file stream */
-  int language = 0; /* Variable to define the language of the UI */
-  int instructions_or_test =
-      0; /* Variable to choose between having instructions or not */
-  FILE *enneagram_symbol; /* Pointer to the text file containing ASCII art of
-                      the Enneagram symbol */
-  TYPE *types = (struct TYPE *)malloc(sizeof(struct TYPE));
-  if (types == NULL) {
-    puts("Error allocating memory for \"types\".");
+void print_greeting(int argc, char *argv[]);
+int language_choice(void);
+int instructions_or_test_choice(int language);
+
+int main(int argc, char *argv[]) {
+  setlocale(LC_ALL, "");
+
+  TYPE *enneagram_types = (struct TYPE *)malloc(sizeof(struct TYPE));
+  if (enneagram_types == NULL) {
+    perror("Error allocating memory for \"types\"");
     exit(EXIT_FAILURE);
   }
 
-  /* Print greeting */
-  /* Checks if enneagram_symbol file exists beforehand */
-  if (!(enneagram_symbol = fopen("include/enneagram_symbol.txt", "r"))) {
-    puts("\"enneagram_symbol.txt\" file missing.");
-    exit(EXIT_FAILURE);
-  }
+  print_greeting(argc, argv);
+  int language = language_choice();
+  print_post_greeting(language);
 
-  printf("%s", CYAN); /* Add cyan color to enneagram_symbol content */
-  while ((file_stream = fgetc(enneagram_symbol)) != EOF) {
-    if (putchar(file_stream) == EOF) {
-      puts("Error printing character.");
+  int choice;
+  do {
+    choice = instructions_or_test_choice(language);
+    if (choice == INSTRUCTIONS) {
+      print_instructions(language);
     }
-  }
+  } while (choice != TEST);
 
-  if (fclose(enneagram_symbol) == EOF) {
-    puts("Error closing enneagram_symbol.txt.");
-  }
-  printf("%s", RESET_C); /* Reset color */
+  print_statements(language, enneagram_types);
+  print_result(language, enneagram_types);
 
-  printf("RHETIC v1.57\n"
-         "RHETIC is made by %ssirkhancision%s.\n"
-         "All rights are reserved to the respective owners of RHETI.\n",
-         GREEN, RESET_C);
-
-  /* Select the language of the test */
-  printf("\nLANG:\n"
-         "%s[1] English%s    [2] Português(BR)%s\n"
-         "Enter any other key to exit.\n",
-         RED, GREEN, RESET_C);
-
-  if (scanf("%d", &language) == EOF) {
-    puts("Couldn't read input.");
-    exit(EXIT_FAILURE);
-  }
-
-  if (language == 1) {
-    /* Language: English */
-    setlocale(LC_ALL, "en_US.UTF-8");
-    print_greet_en();
-
-    while (instructions_or_test != EOF) {
-      if (scanf("%d", &instructions_or_test) == EOF) {
-        puts("Couldn't read input.");
-        exit(EXIT_FAILURE);
-      }
-
-      if (instructions_or_test == 1) {
-        /* Instructions */
-        print_instructions_en();
-        puts("Enter [2] to proceed to the test.");
-      } else if (instructions_or_test == 2) {
-        /* The RHETI test */
-        statements_english(types); /* Print statements */
-
-        /* Results */
-        print_result_en(types);
-        instructions_or_test = EOF; /* To exit the loop */
-      }
-    }
-  } else if (language == 2) {
-    /* Linguagem: Português(BR) */
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    print_greet_pt();
-
-    while (instructions_or_test != EOF) {
-      if (scanf("%d", &instructions_or_test) == EOF) {
-        puts("Não foi possível ler a entrada.");
-        exit(EXIT_FAILURE);
-      }
-
-      if (instructions_or_test == 1) {
-        /* Instruções */
-        print_instructions_pt();
-        puts("Digite [2] para prosseguir com o teste.");
-      } else if (instructions_or_test == 2) {
-        /* O teste RHETI */
-        statements_portuguese(types); /* Imprimir frases */
-
-        /* Resultados */
-        print_result_pt(types);
-        instructions_or_test = EOF; /* Para sair do loop */
-      }
-    }
-  }
-
-  free(types);
+  free(enneagram_types);
 
   return (0);
+}
+
+void print_greeting(int argc, char *argv[]) {
+  bool display_symbol = true;
+
+  for (int i = 1; i < argc; i++) {
+    if (strcmp(argv[i], "--no-symbol") == 0) {
+      display_symbol = false;
+    }
+  }
+
+  if (display_symbol == true) {
+    /* Open the enneagram_symbol file */
+    FILE *enneagram_symbol = fopen("include/enneagram_symbol.txt", "r");
+    if (enneagram_symbol == NULL) {
+      perror("Error opening enneagram_symbol.txt");
+      exit(EXIT_FAILURE);
+    }
+
+    /* Print the content of the enneagram_symbol file */
+    printf("%s", CYAN); /* Add cyan color to enneagram_symbol content */
+
+    int file_stream;
+    while ((file_stream = fgetc(enneagram_symbol)) != EOF) {
+      if (putchar(file_stream) == EOF) {
+        perror("Error printing character.");
+        exit(EXIT_FAILURE);
+      }
+    }
+
+    /* Close the enneagram_symbol file */
+    if (fclose(enneagram_symbol) != 0) {
+      perror("Error closing enneagram_symbol.txt");
+      exit(EXIT_FAILURE);
+    }
+
+    printf("%s", RESET_C); /* Reset color */
+  }
+
+  printf("RHETIC v1.57\n"
+         "RHETIC is made by %ssirkhancision%s\n"
+         "All rights are reserved to the respective owners of RHETI\n\n",
+         GREEN, RESET_C);
+}
+
+int language_choice(void) {
+  int language;
+
+  puts("Select the language of the test:");
+  puts("(select a different option to exit)");
+  printf("%s", RED);
+  puts("[1] English");
+  printf("%s", GREEN);
+  puts("[2] Português(BR)");
+  printf("%s", RESET_C);
+
+  if (scanf("%d", &language) == EOF) {
+    perror("Error reading input.");
+    exit(EXIT_FAILURE);
+  }
+
+  if (language != ENGLISH && language != PORTUGUESE) {
+    puts("Exiting...");
+    exit(EXIT_SUCCESS);
+  }
+
+  return language;
+}
+
+int instructions_or_test_choice(int language) {
+  int choice = 0;
+
+  switch (language) {
+  case ENGLISH:
+    printf("\n%s[1] %sInstructions%s\n", RED, GREEN, RESET_C);
+    printf("%s[2] %sThe RHETIC test%s\n", RED, GREEN, RESET_C);
+
+    if (scanf("%d", &choice) == EOF) {
+      perror("Error: failed to read input.");
+      exit(EXIT_FAILURE);
+    }
+    break;
+
+  case PORTUGUESE:
+    printf("\n%s[1] %sInstruções%s\n", RED, GREEN, RESET_C);
+    printf("%s[2] %sO teste RHETIC%s\n", RED, GREEN, RESET_C);
+
+    if (scanf("%d", &choice) == EOF) {
+      perror("Erro: falha ao ler entrada.");
+      exit(EXIT_FAILURE);
+    }
+    break;
+
+  default:
+    perror("Invalid language choice.");
+    exit(EXIT_FAILURE);
+    break;
+  }
+
+  return choice;
 }
